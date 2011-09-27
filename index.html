@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Clojure SyntaxHighlighter brush</title>
+    <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCoreDefault.css" rel="stylesheet" type="text/css" />
+    <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
+    <script src="shBrushClojure.js" type="text/javascript"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+  </head>
+  <body>
+    <h1>Clojure SyntaxHighlighter brush</h1>
+    <h2>Sample code from WikiPedia</h2>
+    <pre class="brush: clojure;">
+(println "Hello, world!")
+    </pre>
+    <pre class="brush: clojure;">
+(defn square [x]
+  (* x x))
+    </pre>
+    <pre class="brush: clojure;">
+(javax.swing.JOptionPane/showMessageDialog nil "Hello World")
+    </pre>
+    <pre class="brush: clojure;">
+(let [i (atom 0)]
+  (defn generate-unique-id
+    "Returns a distinct numeric ID for each call."
+    []
+    (swap! i inc)))
+    </pre>
+    <pre class="brush: clojure;">
+(def bit-bucket-writer
+  (proxy [java.io.Writer] []
+    (write [buf] nil)
+    (close []    nil)
+    (flush []    nil)))
+
+(defmacro noprint
+  "Evaluates the given expressions with all printing to *out* silenced."
+  [& forms]
+  `(binding [*out* bit-bucket-writer]
+     ~@forms))
+
+(noprint
+  (println "Hello, nobody!"))
+    </pre>
+    <pre class="brush: clojure;">
+(defn run [nvecs nitems nthreads niters]
+  (let [vec-refs (vec (map (comp ref vec)
+                           (partition nitems (range (* nvecs nitems)))))
+        swap #(let [v1 (rand-int nvecs)
+                    v2 (rand-int nvecs)
+                    i1 (rand-int nitems)
+                    i2 (rand-int nitems)]
+                (dosync
+                 (let [temp (nth @(vec-refs v1) i1)]
+                   (alter (vec-refs v1) assoc i1 (nth @(vec-refs v2) i2))
+                   (alter (vec-refs v2) assoc i2 temp))))
+        report #(do
+                 (prn (map deref vec-refs))
+                 (println "Distinct:"
+                          (count (distinct (apply concat (map deref vec-refs))))))]
+    (report)
+    (dorun (apply pcalls (repeat nthreads #(dotimes [_ niters] (swap)))))
+    (report)))
+
+(run 100 10 10 100000)
+    </pre>
+  </body>
+</html>
