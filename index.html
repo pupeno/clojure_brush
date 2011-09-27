@@ -10,6 +10,23 @@
   </head>
   <body>
     <h1>Clojure SyntaxHighlighter brush</h1>
+    <h2>Regressions</h2>
+    <p>Comments</p>
+    <pre class="brush: clojure;">
+;;;; 4 semicolons
+;;; 3 semicolons
+;; 2 semicolons
+; 1 semicolon
+
+(println "Hello, world!") ;;;; 4 semicolons after code
+(println "Hello, world!") ;;; 3 semicolons after code
+(println "Hello, world!") ;; 2 semicolons after code
+(println "Hello, world!") ; 1 semicolon after code
+    </pre>
+    <p>Keywords with dashes</p>
+    <pre class="brush: clojure;">
+(foo-bar :foo-bar 'foo-bar)
+    </pre>
     <h2>Sample code from WikiPedia</h2>
     <pre class="brush: clojure;">
 (println "Hello, world!")
