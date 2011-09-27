@@ -11,6 +11,13 @@
   <body>
     <h1>Clojure SyntaxHighlighter brush</h1>
     <h2>Regressions</h2>
+    <p>Things starting with an ampersand, like &amp;amp; or &amp;gt; end up with an extra semicolon, like &amp;; instead of just &amp; which is handled as the start of a comment.</p>
+    <pre class="brush: clojure;">
+&amp;
+&gt;
+&lt;
+&
+    </pre>
     <p>Comments</p>
     <pre class="brush: clojure;">
 ;;;; 4 semicolons

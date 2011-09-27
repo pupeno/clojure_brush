@@ -10,6 +10,12 @@ SyntaxHighlighter.brushes.Clojure = function() {
               "trampoline try type use var vec when while";
 
   this.regexList = [
+          // Explicitly match entities to avoid them matching a comment. https://github.com/alexgorbatchev/SyntaxHighlighter/issues/41
+          { regex: new RegExp("&", "gm"),                                 css: "keyword"},
+          { regex: new RegExp("&amp;", "gm"),                             css: "keyword"},
+          { regex: new RegExp("&gt;", "gm"),                              css: "keyword"},
+          { regex: new RegExp("&lt;", "gm"),                              css: "keyword"},
+
           { regex: new RegExp(";.*$", "gm"),                               css: "comments" },
           { regex: SyntaxHighlighter.regexLib.multiLineDoubleQuotedString, css: "string" },
           { regex: /\[|\]/g,                                               css: "keyword" },
