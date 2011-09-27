@@ -17,8 +17,6 @@ SyntaxHighlighter.brushes.Clojure = function() {
           { regex: /:[a-z][A-Za-z0-9_\-]*/g,                               css: "color2" }, // keywords
           { regex: new RegExp(this.getKeywords(funcs), "gmi"),             css: "functions" }
       ];
-
-  this.forHtmlScript(SyntaxHighlighter.regexLib.aspScriptTags);
 }
 
 SyntaxHighlighter.brushes.Clojure.prototype     = new SyntaxHighlighter.Highlighter(); 
