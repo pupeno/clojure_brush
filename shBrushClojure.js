@@ -18,9 +18,9 @@ SyntaxHighlighter.brushes.Clojure = function() {
 
           { regex: new RegExp(";.*$", "gm"),                               css: "comments" },
           { regex: SyntaxHighlighter.regexLib.multiLineDoubleQuotedString, css: "string" },
-          { regex: /\[|\]/g,                                               css: "keyword" },
-          { regex: /'[a-z][A-Za-z0-9_\-]*/g,                               css: "color1" }, // symbols
-          { regex: /:[a-z][A-Za-z0-9_\-]*/g,                               css: "color2" }, // keywords
+          { regex: /\(|\)|\[|\]/g,                                         css: "keyword" },
+          { regex: /'[a-z][A-Za-z0-9_\-]*/g,                               css: "constants" }, // symbols
+          { regex: /:[a-z][A-Za-z0-9_\-]*/g,                               css: "color1" }, // keywords
           { regex: new RegExp(this.getKeywords(funcs), "gmi"),             css: "functions" }
       ];
 }
