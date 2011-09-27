@@ -19,10 +19,10 @@
 
             { regex: new RegExp(";.*$", "gm"),                               css: "comments" },
             { regex: SyntaxHighlighter.regexLib.multiLineDoubleQuotedString, css: "string" },
-            { regex: /'[a-z][A-Za-z0-9_\-]*/g,                               css: "constants" }, // symbols
-            { regex: /:[a-z][A-Za-z0-9_\-]*/g,                               css: "color1" }, // keywords
-            { regex: /\(([a-z][A-Za-z0-9_\-]*)/gm,             func: process },
             { regex: /[\(\)\[\]`@~#]/g,                                         css: "keyword" },
+            { regex: /'[a-z][A-Za-z0-9!?_\-]*/g,                               css: "constants" }, // symbols
+            { regex: /:[a-z][A-Za-z0-9!?_\-]*/g,                               css: "color1" }, // keywords
+            { regex: /\(([a-z][A-Za-z0-9!?_\-]*)/gm,             func: process },
         ];
     }
 
